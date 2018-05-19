@@ -18,5 +18,5 @@
 
     <!-- Loading static resources -->
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/resources/**" location="assets"/>
+    <mvc:resources mapping="/resources/**" location="assets/"/>
 </beans>

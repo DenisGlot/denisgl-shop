@@ -1,7 +1,6 @@
 package com.denisgl.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -9,16 +8,38 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageController {
 
     @RequestMapping(value = {"/", "/home", "/index"})
-    public ModelAndView hello() {
+    public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("page");
-        modelAndView.addObject("greeting", "Welcome to spring mvc");
+        modelAndView.addObject("title", "Home page");
+        modelAndView.addObject("jsActiveMenu", "home");
+        modelAndView.addObject("userClickHome", true);
         return modelAndView;
     }
 
-    @RequestMapping("/test/{param}")
-    public ModelAndView test(@PathVariable("param") String param) {
+    @RequestMapping(value = "about")
+    public ModelAndView about() {
         ModelAndView modelAndView = new ModelAndView("page");
-        modelAndView.addObject("greeting", param);
+        modelAndView.addObject("title", "About Us");
+        modelAndView.addObject("jsActiveMenu", "about");
+        modelAndView.addObject("userClickAbout", true);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "contact")
+    public ModelAndView contact() {
+        ModelAndView modelAndView = new ModelAndView("page");
+        modelAndView.addObject("title", "Contact Us");
+        modelAndView.addObject("jsActiveMenu", "contact");
+        modelAndView.addObject("userClickContact", true);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "listProducts")
+    public ModelAndView listProducts() {
+        ModelAndView modelAndView = new ModelAndView("page");
+        modelAndView.addObject("title", "Products List");
+        modelAndView.addObject("jsActiveMenu", "listProducts");
+        modelAndView.addObject("userClickListProducts", true);
         return modelAndView;
     }
 }
