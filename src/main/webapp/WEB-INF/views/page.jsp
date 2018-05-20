@@ -52,7 +52,7 @@
             <c:if test="${userClickContact}">
                 <%@include file="contact.jsp"%>
             </c:if>
-            <c:if test="${userClickListProducts}">
+            <c:if test="${userClickCategoryProducts}">
                 <%@include file="listProducts.jsp"%>
             </c:if>
         </div>
