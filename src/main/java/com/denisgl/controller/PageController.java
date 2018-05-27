@@ -1,14 +1,13 @@
 package com.denisgl.controller;
 
+
 import com.denisgl.dao.ICategoryDAO;
-import com.denisgl.dto.Category;
+import com.denisgl.dto.ICategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class PageController {
@@ -52,7 +51,7 @@ public class PageController {
     @RequestMapping(value = "category/{id}")
     public ModelAndView categoryProducts(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("page");
-        Category category = categoryDAO.getCategory(id);
+        ICategory category = categoryDAO.getCategory(id);
 
         mv.addObject("jsActiveMenu", category.getName());
         mv.addObject("categories", categoryDAO.getCategories());
