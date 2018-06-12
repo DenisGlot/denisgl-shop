@@ -26,10 +26,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="${css}/shop-homepage.css" rel="stylesheet">
     <!--Bootstrap theme-->
     <link href="${css}/bootstrap-theme.css" rel="stylesheet">
+    <!-- DataTables-->
+    <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="${css}/shop-homepage.css" rel="stylesheet">
 
 </head>
 
@@ -61,6 +63,9 @@
 
         <!-- Bootstrap core JavaScript -->
         <script src="${js}/jquery.min.js"></script>
+        <!-- DataTables -->
+        <script src="${js}/jquery.dataTables.js"></script>
+        <script src="${js}/dataTables.bootstrap.js"></script>
         <script src="${js}/shop.js"></script>
         <script src="${js}/bootstrap.bundle.min.js"></script>
 
