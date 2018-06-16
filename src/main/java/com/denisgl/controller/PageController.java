@@ -4,8 +4,11 @@ package com.denisgl.controller;
 import com.denisgl.dto.ICategory;
 import com.denisgl.dto.IProduct;
 import com.denisgl.dtoimpl.HibernateProduct;
+import com.denisgl.exception.CategoryNotFoundException;
+import com.denisgl.exception.ProductNotFoundException;
 import com.denisgl.filter.CategoryFilter;
 import com.denisgl.service.ICatalogService;
+import com.denisgl.util.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +68,15 @@ public class PageController {
     }
 
     @RequestMapping(value = "category/{id}")
-    public ModelAndView categoryProducts(@PathVariable("id") int id) {
+    public ModelAndView categoryProducts(@PathVariable("id") String id) throws CategoryNotFoundException {
         ModelAndView mv = new ModelAndView("page");
-        ICategory category = catalogService.getCategory(id);
+
+        int parsedId = NumberUtils.parseStringToInt(id);
+        if (parsedId == -1) throw new CategoryNotFoundException();
+
+        ICategory category = catalogService.getCategory(parsedId);
+
+        if (category == null) throw new CategoryNotFoundException();
 
         mv.addObject("jsActiveMenu", category.getName());
         mv.addObject("userClickListProducts", true);
@@ -83,9 +92,15 @@ public class PageController {
     }
 
     @RequestMapping(value = "product/{id}")
-    public ModelAndView product(@PathVariable("id") int id) {
+    public ModelAndView product(@PathVariable("id") String id) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
-        IProduct product = catalogService.getProduct(id);
+
+        int parsedId = NumberUtils.parseStringToInt(id);
+        if (parsedId == -1) throw new ProductNotFoundException();
+
+        IProduct product = catalogService.getProduct(parsedId);
+
+        if (product == null) throw new ProductNotFoundException();
 
         mv.addObject("userClickProduct", true);
         mv.addObject("product", product);
