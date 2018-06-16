@@ -2,8 +2,12 @@ package com.denisgl.controller;
 
 
 import com.denisgl.dto.ICategory;
+import com.denisgl.dto.IProduct;
+import com.denisgl.dtoimpl.HibernateProduct;
 import com.denisgl.filter.CategoryFilter;
 import com.denisgl.service.ICatalogService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class PageController {
+
+    public static final Logger LOG = LoggerFactory.getLogger(PageController.class);
 
     @Autowired
     private ICatalogService catalogService;
@@ -72,6 +78,23 @@ public class PageController {
         CategoryFilter filter = new CategoryFilter();
         List<ICategory> categories = catalogService.getCategories(filter);
         mv.addObject("categories", categories);
+
+        return mv;
+    }
+
+    @RequestMapping(value = "product/{id}")
+    public ModelAndView product(@PathVariable("id") int id) {
+        ModelAndView mv = new ModelAndView("page");
+        IProduct product = catalogService.getProduct(id);
+
+        mv.addObject("userClickProduct", true);
+        mv.addObject("product", product);
+        mv.addObject("title", product.getName());
+
+        ((HibernateProduct) product).setViews(product.getViews() + 1);
+        catalogService.saveProduct(product);
+
+        LOG.info("product " + product.getName() + " with id = " + product.getId());
 
         return mv;
     }
