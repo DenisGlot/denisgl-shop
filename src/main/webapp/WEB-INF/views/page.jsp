@@ -62,6 +62,10 @@
             <c:if test="${userClickProduct}">
                 <%@include file="product.jsp"%>
             </c:if>
+
+            <c:if test="${userClickEditorProducts}">
+                <%@include file="editorProducts.jsp"%>
+            </c:if>
         </div>
         <!-- Footer -->
         <%@include file="shared/footer.jsp"%>

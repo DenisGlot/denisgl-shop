@@ -12,9 +12,12 @@ $(function () {
             break;
         case 'home':
             $('#home').addClass('active');
+            break;
+        case 'editorProduct':
+            $('#editorProduct').addClass('active');
+            break;
         default:
             $('#category_' + menu).addClass('active');
-            break;
     }
 
     //dataTable
@@ -71,6 +74,14 @@ $(function () {
             pageLength: 5
         });
 
+    }
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeOut('slow');
+
+        }, 3000);
     }
 
 });

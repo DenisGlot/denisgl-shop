@@ -17,6 +17,10 @@
                 <li id="contact" class="nav-item">
                     <a class="nav-link" href="${contextRoot}/contact">Contact</a>
                 </li>
+
+                <li id="editorProduct" class="nav-item">
+                    <a class="nav-link" href="${contextRoot}/editor/products">Edit product</a>
+                </li>
             </ul>
         </div>
     </div>

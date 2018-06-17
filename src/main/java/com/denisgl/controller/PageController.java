@@ -47,8 +47,7 @@ public class PageController {
         mv.addObject("jsActiveMenu", "about");
         mv.addObject("userClickAbout", true);
 
-        CategoryFilter filter = new CategoryFilter();
-        List<ICategory> categories = catalogService.getCategories(filter);
+        List<ICategory> categories = catalogService.getCategories();
         mv.addObject("categories", categories);
 
         return mv;
@@ -61,8 +60,7 @@ public class PageController {
         mv.addObject("jsActiveMenu", "contact");
         mv.addObject("userClickContact", true);
 
-        CategoryFilter filter = new CategoryFilter();
-        List<ICategory> categories = catalogService.getCategories(filter);
+        List<ICategory> categories = catalogService.getCategories();
         mv.addObject("categories", categories);
         return mv;
     }
@@ -71,7 +69,7 @@ public class PageController {
     public ModelAndView categoryProducts(@PathVariable("id") String id) throws CategoryNotFoundException {
         ModelAndView mv = new ModelAndView("page");
 
-        int parsedId = NumberUtils.parseStringToInt(id);
+        int parsedId = NumberUtils.parsePositiveStringNumber(id);
         if (parsedId == -1) throw new CategoryNotFoundException();
 
         ICategory category = catalogService.getCategory(parsedId);
@@ -84,8 +82,7 @@ public class PageController {
         mv.addObject("category", category);
         mv.addObject("title", category.getName());
 
-        CategoryFilter filter = new CategoryFilter();
-        List<ICategory> categories = catalogService.getCategories(filter);
+        List<ICategory> categories = catalogService.getCategories();
         mv.addObject("categories", categories);
 
         return mv;
@@ -95,7 +92,7 @@ public class PageController {
     public ModelAndView product(@PathVariable("id") String id) throws ProductNotFoundException {
         ModelAndView mv = new ModelAndView("page");
 
-        int parsedId = NumberUtils.parseStringToInt(id);
+        int parsedId = NumberUtils.parsePositiveStringNumber(id);
         if (parsedId == -1) throw new ProductNotFoundException();
 
         IProduct product = catalogService.getProduct(parsedId);
