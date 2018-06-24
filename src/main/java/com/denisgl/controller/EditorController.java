@@ -5,6 +5,7 @@ import com.denisgl.dto.IProduct;
 import com.denisgl.dtoimpl.HibernateProduct;
 import com.denisgl.loader.FileUploader;
 import com.denisgl.service.ICatalogService;
+import com.denisgl.validator.ProductImageValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,8 @@ public class EditorController {
                               BindingResult result,
                               Model model,
                               HttpServletRequest request) {
+
+        new ProductImageValidator().validate(product, result);
 
         if (result.hasErrors()) {
             model.addAttribute("userClickEditorProducts", true);

@@ -22,9 +22,7 @@ public class JsonDataController {
     @RequestMapping("all/products")
     @ResponseBody
     public List<IProduct> getAllProducts() {
-        ProductFilter filter = new ProductFilter();
-        filter.setActive(Boolean.TRUE);
-        return catalogService.getProducts(filter);
+        return catalogService.getProducts();
     }
 
     @RequestMapping("category/{id}")
